@@ -1,0 +1,49 @@
+Crie uma api typescript com NodeJS, onde o projeto deve ser dividido em camadas, seguindo os principios do Domain Driven Design e Clean Architecture.
+Siga as seguintes diretrizes:
+- Use o typeORM como ORM
+- Use o swagger para documentacao autogerada
+- Use o banco de dados mariadb
+- Use o docker para subir o banco de dados e a api
+
+Práticas:
+- Clean Architecture
+- SOLID
+- Domain Driven Design
+- Ports and Adapters
+- Testing
+- OOP
+- Design Patterns
+
+Segurança:
+- jwt
+- bcrypt
+- autenticação e autorização de aplicações
+- Rate Limiting
+- .env
+- .gitignore
+- .dockerignore
+- docker-compose.yml
+- Dockerfile
+- IDS das entidades devem ser UUID
+
+Documentação:
+- swagger
+- collection do postman
+- .md
+    - README.md
+    - ARCHITECTURE.md
+    - SECURITY.md
+    - DEVELOPMENT.md
+    - TESTING.md
+    - DEPLOYMENT.md
+    - CHANGELOG.md
+
+Não gere documentação alem do que foi pedido. No README.md, coloque as instruções de como subir o projeto. Coloque todos os arquivos .md em uma pasta docs. E um arquivo .md na raiz do projeto
+que junte todos atraves de links, organizando em secoes.
+
+Observações:
+- Com relacao ao ORM, nao se esqueça de criar as migrations e os seeders.
+- O projeto deve ser dividido em camadas, seguindo os principios do Domain Driven Design e Clean Architecture.
+- Todas as rotas devem ser protegidas por autenticação e autorização.
+
+
