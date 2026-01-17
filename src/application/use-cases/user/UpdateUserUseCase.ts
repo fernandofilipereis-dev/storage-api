@@ -1,6 +1,6 @@
-import { IUserRepository } from '../../domain/repositories/IUserRepository';
-import { UpdateUserDTO, UserResponseDTO } from '../dtos/UserDTO';
-import { NotFoundException, ConflictException } from '../../domain/exceptions/DomainExceptions';
+import { IUserRepository } from '@domain/repositories/IUserRepository';
+import { UpdateUserDTO, UserResponseDTO } from '@application/dtos/UserDTO';
+import { NotFoundException, ConflictException } from '@domain/exceptions/DomainExceptions';
 
 export class UpdateUserUseCase {
     constructor(private readonly userRepository: IUserRepository) { }

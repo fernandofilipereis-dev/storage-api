@@ -1,8 +1,8 @@
-import { Response } from 'express';
+import { Response, NextFunction } from 'express';
 import { AuthRequest } from '../middlewares/AuthMiddleware';
-import { GetUserByIdUseCase } from '../../application/use-cases/user/GetUserByIdUseCase';
-import { UpdateUserUseCase } from '../../application/use-cases/user/UpdateUserUseCase';
-import { UserRepository } from '../../infrastructure/database/repositories/UserRepository';
+import { GetUserByIdUseCase } from '@application/use-cases/user/GetUserByIdUseCase';
+import { UpdateUserUseCase } from '@application/use-cases/user/UpdateUserUseCase';
+import { UserRepository } from '@infrastructure/database/repositories/UserRepository';
 
 export class UserController {
     private getUserByIdUseCase: GetUserByIdUseCase;
@@ -31,7 +31,7 @@ export class UserController {
      *       404:
      *         description: User not found
      */
-    getProfile = async (req: AuthRequest, res: Response): Promise<void> => {
+    getProfile = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
         try {
             const userId = req.user?.userId;
 
@@ -44,7 +44,7 @@ export class UserController {
 
             res.status(200).json(user);
         } catch (error) {
-            throw error;
+            next(error);
         }
     };
 
@@ -80,7 +80,7 @@ export class UserController {
      *       409:
      *         description: Email already in use
      */
-    updateProfile = async (req: AuthRequest, res: Response): Promise<void> => {
+    updateProfile = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
         try {
             const userId = req.user?.userId;
 
@@ -95,7 +95,7 @@ export class UserController {
 
             res.status(200).json(updatedUser);
         } catch (error) {
-            throw error;
+            next(error);
         }
     };
 
@@ -123,15 +123,15 @@ export class UserController {
      *       404:
      *         description: User not found
      */
-    getUserById = async (req: AuthRequest, res: Response): Promise<void> => {
+    getUserById = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
         try {
-            const { id } = req.params;
+            const id = req.params.id as string;
 
             const user = await this.getUserByIdUseCase.execute(id);
 
             res.status(200).json(user);
         } catch (error) {
-            throw error;
+            next(error);
         }
     };
 }

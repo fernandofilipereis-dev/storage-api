@@ -1,6 +1,6 @@
 import request from 'supertest';
-import { Server } from '../../../src/server';
-import { AppDataSource } from '../../../src/infrastructure/database/config/ormconfig';
+import { Server } from '../../src/server';
+import { AppDataSource } from '@infrastructure/database/config/ormconfig';
 
 describe('Auth E2E Tests', () => {
     let app: any;

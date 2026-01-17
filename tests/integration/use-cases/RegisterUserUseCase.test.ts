@@ -1,9 +1,9 @@
-import { RegisterUserUseCase } from '../../../../src/application/use-cases/auth/RegisterUserUseCase';
-import { IUserRepository } from '../../../../src/domain/repositories/IUserRepository';
-import { IPasswordHasher } from '../../../../src/domain/services/IPasswordHasher';
-import { ITokenService } from '../../../../src/domain/services/ITokenService';
-import { User } from '../../../../src/domain/entities/User';
-import { ConflictException } from '../../../../src/domain/exceptions/DomainExceptions';
+import { RegisterUserUseCase } from '@application/use-cases/auth/RegisterUserUseCase';
+import { IUserRepository } from '@domain/repositories/IUserRepository';
+import { IPasswordHasher } from '@domain/services/IPasswordHasher';
+import { ITokenService } from '@domain/services/ITokenService';
+import { User } from '@domain/entities/User';
+import { ConflictException } from '@domain/exceptions/DomainExceptions';
 
 describe('RegisterUserUseCase', () => {
     let registerUserUseCase: RegisterUserUseCase;

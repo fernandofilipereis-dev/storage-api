@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 
 export class ErrorMiddleware {
-    static handle(err: Error, req: Request, res: Response, next: NextFunction): void {
+    static handle(err: Error, _req: Request, res: Response, _next: NextFunction): void {
         console.error('Error:', err);
 
         // Handle specific error types

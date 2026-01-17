@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { RegisterUserUseCase } from '../../application/use-cases/auth/RegisterUserUseCase';
 import { LoginUserUseCase } from '../../application/use-cases/auth/LoginUserUseCase';
 import { UserRepository } from '../../infrastructure/database/repositories/UserRepository';
@@ -63,7 +63,7 @@ export class AuthController {
      *       409:
      *         description: User already exists
      */
-    register = async (req: Request, res: Response): Promise<void> => {
+    register = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
         try {
             const { name, email, password } = req.body;
 
@@ -76,7 +76,7 @@ export class AuthController {
 
             res.status(201).json(result);
         } catch (error) {
-            throw error;
+            next(error);
         }
     };
 
@@ -112,7 +112,7 @@ export class AuthController {
      *       404:
      *         description: User not found
      */
-    login = async (req: Request, res: Response): Promise<void> => {
+    login = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
         try {
             const { email, password } = req.body;
 
@@ -125,7 +125,7 @@ export class AuthController {
 
             res.status(200).json(result);
         } catch (error) {
-            throw error;
+            next(error);
         }
     };
 }

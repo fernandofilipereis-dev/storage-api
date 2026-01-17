@@ -72,6 +72,7 @@ For detailed documentation, see the [Documentation Index](./DOCUMENTATION.md).
 - [Testing](./docs/TESTING.md) - Testing strategy and guidelines
 - [Deployment](./docs/DEPLOYMENT.md) - Deployment instructions
 - [Changelog](./docs/CHANGELOG.md) - Version history
+- [Postman Collection](./postman_collection.json) - API Collection for Postman
 
 ## 🏗️ Architecture
 
@@ -135,6 +136,7 @@ npm run test:integration # Run integration tests
 npm run test:e2e         # Run e2e tests
 npm run lint             # Run ESLint
 npm run format           # Format code with Prettier
+npm run postman:generate # Generate Postman collection from Swagger
 ```
 
 ## 🧪 Testing

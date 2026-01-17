@@ -1,8 +1,8 @@
-import { IUserRepository } from '../../domain/repositories/IUserRepository';
-import { IPasswordHasher } from '../../domain/services/IPasswordHasher';
-import { ITokenService } from '../../domain/services/ITokenService';
-import { LoginUserDTO, AuthResponseDTO } from '../dtos/UserDTO';
-import { UnauthorizedException, NotFoundException } from '../../domain/exceptions/DomainExceptions';
+import { IUserRepository } from '@domain/repositories/IUserRepository';
+import { IPasswordHasher } from '@domain/services/IPasswordHasher';
+import { ITokenService } from '@domain/services/ITokenService';
+import { LoginUserDTO, AuthResponseDTO } from '@application/dtos/UserDTO';
+import { UnauthorizedException, NotFoundException } from '@domain/exceptions/DomainExceptions';
 
 export class LoginUserUseCase {
     constructor(

@@ -1,9 +1,9 @@
-import { User } from '../../domain/entities/User';
-import { IUserRepository } from '../../domain/repositories/IUserRepository';
-import { IPasswordHasher } from '../../domain/services/IPasswordHasher';
-import { ITokenService } from '../../domain/services/ITokenService';
-import { RegisterUserDTO, AuthResponseDTO } from '../dtos/UserDTO';
-import { ConflictException } from '../../domain/exceptions/DomainExceptions';
+import { User } from '@domain/entities/User';
+import { IUserRepository } from '@domain/repositories/IUserRepository';
+import { IPasswordHasher } from '@domain/services/IPasswordHasher';
+import { ITokenService } from '@domain/services/ITokenService';
+import { RegisterUserDTO, AuthResponseDTO } from '@application/dtos/UserDTO';
+import { ConflictException } from '@domain/exceptions/DomainExceptions';
 
 export class RegisterUserUseCase {
     constructor(

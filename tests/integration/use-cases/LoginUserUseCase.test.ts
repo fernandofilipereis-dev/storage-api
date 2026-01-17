@@ -1,9 +1,9 @@
-import { LoginUserUseCase } from '../../../../src/application/use-cases/auth/LoginUserUseCase';
-import { IUserRepository } from '../../../../src/domain/repositories/IUserRepository';
-import { IPasswordHasher } from '../../../../src/domain/services/IPasswordHasher';
-import { ITokenService } from '../../../../src/domain/services/ITokenService';
-import { User } from '../../../../src/domain/entities/User';
-import { NotFoundException, UnauthorizedException } from '../../../../src/domain/exceptions/DomainExceptions';
+import { LoginUserUseCase } from '@application/use-cases/auth/LoginUserUseCase';
+import { IUserRepository } from '@domain/repositories/IUserRepository';
+import { IPasswordHasher } from '@domain/services/IPasswordHasher';
+import { ITokenService } from '@domain/services/ITokenService';
+import { User } from '@domain/entities/User';
+import { NotFoundException, UnauthorizedException } from '@domain/exceptions/DomainExceptions';
 
 describe('LoginUserUseCase', () => {
     let loginUserUseCase: LoginUserUseCase;

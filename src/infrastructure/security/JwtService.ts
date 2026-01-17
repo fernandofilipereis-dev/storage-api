@@ -1,17 +1,17 @@
 import * as jwt from 'jsonwebtoken';
-import { ITokenService } from '../../domain/services/ITokenService';
+import { ITokenService } from '@domain/services/ITokenService';
 
 export class JwtService implements ITokenService {
     private readonly accessTokenSecret: string;
     private readonly refreshTokenSecret: string;
-    private readonly accessTokenExpiresIn: string;
-    private readonly refreshTokenExpiresIn: string;
+    private readonly accessTokenExpiresIn: jwt.SignOptions['expiresIn'];
+    private readonly refreshTokenExpiresIn: jwt.SignOptions['expiresIn'];
 
     constructor() {
         this.accessTokenSecret = process.env.JWT_SECRET || 'default-secret';
         this.refreshTokenSecret = process.env.JWT_REFRESH_SECRET || 'default-refresh-secret';
-        this.accessTokenExpiresIn = process.env.JWT_EXPIRES_IN || '24h';
-        this.refreshTokenExpiresIn = process.env.JWT_REFRESH_EXPIRES_IN || '7d';
+        this.accessTokenExpiresIn = (process.env.JWT_EXPIRES_IN || '24h') as jwt.SignOptions['expiresIn'];
+        this.refreshTokenExpiresIn = (process.env.JWT_REFRESH_EXPIRES_IN || '7d') as jwt.SignOptions['expiresIn'];
     }
 
     generateAccessToken(payload: Record<string, any>): string {

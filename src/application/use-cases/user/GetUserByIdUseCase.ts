@@ -1,6 +1,6 @@
-import { IUserRepository } from '../../domain/repositories/IUserRepository';
-import { UserResponseDTO } from '../dtos/UserDTO';
-import { NotFoundException } from '../../domain/exceptions/DomainExceptions';
+import { IUserRepository } from '@domain/repositories/IUserRepository';
+import { UserResponseDTO } from '@application/dtos/UserDTO';
+import { NotFoundException } from '@domain/exceptions/DomainExceptions';
 
 export class GetUserByIdUseCase {
     constructor(private readonly userRepository: IUserRepository) { }

@@ -7,6 +7,7 @@ export const rateLimitMiddleware = rateLimit({
     message: 'Too many requests from this IP, please try again later.',
     standardHeaders: true,
     legacyHeaders: false,
+    skip: () => process.env.NODE_ENV === 'test',
 });
 
 export const authRateLimitMiddleware = rateLimit({
@@ -15,4 +16,5 @@ export const authRateLimitMiddleware = rateLimit({
     message: 'Too many authentication attempts, please try again later.',
     standardHeaders: true,
     legacyHeaders: false,
+    skip: () => process.env.NODE_ENV === 'test',
 });

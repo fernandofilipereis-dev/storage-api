@@ -7,7 +7,7 @@ import userRoutes from './user.routes';
 const router = Router();
 
 // Health check endpoint
-router.get('/health', (req: Request, res: Response) => {
+router.get('/health', (_req: Request, res: Response) => {
     res.status(200).json({
         status: 'OK',
         timestamp: new Date().toISOString(),
@@ -24,7 +24,7 @@ router.get('/docs', swaggerUi.setup(swaggerSpec, {
 }));
 
 // Swagger JSON
-router.get('/docs.json', (req: Request, res: Response) => {
+router.get('/docs.json', (_req: Request, res: Response) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(swaggerSpec);
 });

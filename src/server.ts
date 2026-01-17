@@ -33,8 +33,8 @@ export class Server {
 
         // Request logging in development
         if (Config.isDevelopment()) {
-            this.app.use((req, res, next) => {
-                console.log(`${req.method} ${req.path}`);
+            this.app.use((_req, _res, next) => {
+                console.log(`${_req.method} ${_req.path}`);
                 next();
             });
         }
@@ -45,7 +45,7 @@ export class Server {
         this.app.use(Config.API_PREFIX, routes);
 
         // Root endpoint
-        this.app.get('/', (req, res) => {
+        this.app.get('/', (_req, res) => {
             res.json({
                 message: 'Storage API',
                 version: '1.0.0',
@@ -54,7 +54,7 @@ export class Server {
         });
 
         // Health check (outside API prefix for load balancers)
-        this.app.get('/health', (req, res) => {
+        this.app.get('/health', (_req, res) => {
             res.status(200).json({
                 status: 'OK',
                 timestamp: new Date().toISOString(),
