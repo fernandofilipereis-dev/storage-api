@@ -16,6 +16,7 @@ const authMiddleware = new AuthMiddleware();
 // All user routes require authentication
 router.use(authMiddleware.authenticate);
 
+router.get('/', userController.listUsers);
 router.get('/me', userController.getProfile);
 router.put('/me', userController.updateProfile);
 router.get('/:id', userController.getUserById);

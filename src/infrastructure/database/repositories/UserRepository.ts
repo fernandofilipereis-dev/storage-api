@@ -21,9 +21,27 @@ export class UserRepository implements IUserRepository {
         return entity ? this.toDomain(entity) : null;
     }
 
-    async findAll(): Promise<User[]> {
-        const entities = await this.repository.find();
-        return entities.map((entity) => this.toDomain(entity));
+    async findAll(params?: any): Promise<[User[], number]> {
+        const { page = 1, limit = 10, sortBy = 'createdAt', sortOrder = 'DESC', search, isActive } = params || {};
+
+        const queryBuilder = this.repository.createQueryBuilder('user');
+
+        if (search) {
+            queryBuilder.andWhere('(user.name LIKE :search OR user.email LIKE :search)', {
+                search: `%${search}%`,
+            });
+        }
+
+        if (isActive !== undefined) {
+            queryBuilder.andWhere('user.isActive = :isActive', { isActive });
+        }
+
+        queryBuilder.orderBy(`user.${sortBy}`, sortOrder);
+        queryBuilder.skip((page - 1) * limit);
+        queryBuilder.take(limit);
+
+        const [entities, count] = await queryBuilder.getManyAndCount();
+        return [entities.map((entity) => this.toDomain(entity)), count];
     }
 
     async save(user: User): Promise<User> {

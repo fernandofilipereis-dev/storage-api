@@ -27,10 +27,48 @@ Converter.convert(
             process.exit(1);
         }
 
+        // Modify the collection to include automatic token management
+        const collection = conversionResult.output[0].data;
+
+        // Script to be added to login and register requests
+        const tokenScript = [
+            "const response = pm.response.json();",
+            "if (response.accessToken) {",
+            "    pm.environment.set('bearerToken', response.accessToken);",
+            "    console.log('✅ Access token saved to environment');",
+            "}"
+        ];
+
+        // Traverse the collection to find auth requests
+        const traverseAndInject = (items: any[]) => {
+            items.forEach(item => {
+                if (item.request) {
+                    const name = item.name.toLowerCase();
+                    if (name.includes('login') || name.includes('register')) {
+                        item.event = item.event || [];
+                        item.event.push({
+                            listen: 'test',
+                            script: {
+                                exec: tokenScript,
+                                type: 'text/javascript'
+                            }
+                        });
+                    }
+                }
+                if (item.item) {
+                    traverseAndInject(item.item);
+                }
+            });
+        };
+
+        if (collection.item) {
+            traverseAndInject(collection.item);
+        }
+
         // Save Collection
         fs.writeFileSync(
             postmanCollectionPath,
-            JSON.stringify(conversionResult.output[0].data, null, 2)
+            JSON.stringify(collection, null, 2)
         );
         console.log(`✅ Postman collection generated at: ${postmanCollectionPath}`);
 

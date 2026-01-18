@@ -1,7 +1,7 @@
 {
   "item": [
     {
-      "id": "311b1c64-bf3f-4e1d-8e11-418d9957b676",
+      "id": "f9c71b69-1fea-4085-bd4a-9e74e9ea1c29",
       "name": "Auth",
       "description": {
         "content": "Authentication endpoints",
@@ -9,7 +9,7 @@
       },
       "item": [
         {
-          "id": "93eb7e66-ecec-4398-a559-965a09382a00",
+          "id": "8b2d30b0-95d2-4bc6-b8ef-1cfff52e28b9",
           "name": "Register a new user",
           "request": {
             "name": "Register a new user",
@@ -45,7 +45,7 @@
           },
           "response": [
             {
-              "id": "1a3ebb92-045d-4c81-897a-409d54994105",
+              "id": "cd1f8c44-6a54-4217-a409-16ecf5d62e58",
               "name": "User registered successfully",
               "originalRequest": {
                 "url": {
@@ -83,7 +83,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "50780d8e-f3bb-400a-a8fa-d9a8e92e812e",
+              "id": "e1cc7204-54f8-4968-841f-30a702a5ac6a",
               "name": "Validation error",
               "originalRequest": {
                 "url": {
@@ -121,7 +121,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "b685d3df-6a09-431c-8c00-a8588321f69d",
+              "id": "f14d5145-8a66-4140-8e2e-311b0f825273",
               "name": "User already exists",
               "originalRequest": {
                 "url": {
@@ -159,13 +159,27 @@
               "_postman_previewlanguage": "text"
             }
           ],
-          "event": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const response = pm.response.json();",
+                  "if (response.accessToken) {",
+                  "    pm.environment.set('bearerToken', response.accessToken);",
+                  "    console.log('✅ Access token saved to environment');",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           }
         },
         {
-          "id": "b96a020b-04a8-4caf-ae7d-91cb564dea1b",
+          "id": "41a48d3b-4956-4d34-bfce-0f9c33dc43be",
           "name": "Login user",
           "request": {
             "name": "Login user",
@@ -201,7 +215,7 @@
           },
           "response": [
             {
-              "id": "3ef44760-f8ed-4fe5-a761-549f7a003e8a",
+              "id": "85358eb8-4c5f-413f-b61e-9afc828fcd1e",
               "name": "Login successful",
               "originalRequest": {
                 "url": {
@@ -239,7 +253,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "f087a6b9-3c6a-4bb8-8fec-ffd2a6bcdd23",
+              "id": "c9c36994-560b-453f-a403-1b033ff64326",
               "name": "Invalid credentials",
               "originalRequest": {
                 "url": {
@@ -277,7 +291,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "b4324be6-6404-4740-a8b2-230285a71c15",
+              "id": "dc195cbf-171d-40b9-a465-862af37131fa",
               "name": "User not found",
               "originalRequest": {
                 "url": {
@@ -315,7 +329,21 @@
               "_postman_previewlanguage": "text"
             }
           ],
-          "event": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const response = pm.response.json();",
+                  "if (response.accessToken) {",
+                  "    pm.environment.set('bearerToken', response.accessToken);",
+                  "    console.log('✅ Access token saved to environment');",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           }
@@ -324,7 +352,7 @@
       "event": []
     },
     {
-      "id": "ec5f4787-c598-40e7-9049-ff4e8af39918",
+      "id": "af26f564-1d43-4982-8ed0-03dabd05f6df",
       "name": "Users",
       "description": {
         "content": "User management endpoints",
@@ -332,7 +360,206 @@
       },
       "item": [
         {
-          "id": "dc443384-baaf-425d-989a-7276704ed606",
+          "id": "2c864662-ac88-4f0a-92ab-b574cbb6fdeb",
+          "name": "List users with pagination, sorting, and filtering",
+          "request": {
+            "name": "List users with pagination, sorting, and filtering",
+            "description": {},
+            "url": {
+              "path": [
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "createdAt",
+                  "description": "Field to sort by"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "DESC",
+                  "description": "Sort order"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search term (name or email)"
+                },
+                {
+                  "disabled": false,
+                  "key": "isActive",
+                  "value": "<boolean>",
+                  "description": "Filter by active status"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c7043222-2cdb-4085-b599-eb612a89825c",
+              "name": "List of users retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "createdAt"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "DESC"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "isActive",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "19a33108-de0c-4c9a-9930-ac07bcb62e5d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "createdAt"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "DESC"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "isActive",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f711cc67-16ac-4510-9bfc-c79b5bf3d401",
           "name": "Get current user profile",
           "request": {
             "name": "Get current user profile",
@@ -361,7 +588,7 @@
           },
           "response": [
             {
-              "id": "ba5574e3-9e80-4338-9335-86cb4d79a696",
+              "id": "c9c0023f-feaf-46e7-9f24-fdd77ebb486f",
               "name": "User profile retrieved successfully",
               "originalRequest": {
                 "url": {
@@ -401,7 +628,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "1e590fa0-150f-4fb1-9034-c6e2737efe27",
+              "id": "0c251e64-04ab-4f22-bb74-b9826fd9c00c",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
@@ -441,7 +668,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "32281b62-b31e-48df-9ab5-761a7c33046d",
+              "id": "ffbbc1ce-154a-4acb-9e32-d5d5374258c1",
               "name": "User not found",
               "originalRequest": {
                 "url": {
@@ -487,7 +714,7 @@
           }
         },
         {
-          "id": "2d7ca9a3-8918-4bbe-9617-c28d7177d40a",
+          "id": "6e503eb0-a62b-460e-a207-113c49eff7d3",
           "name": "Update current user profile",
           "request": {
             "name": "Update current user profile",
@@ -531,7 +758,7 @@
           },
           "response": [
             {
-              "id": "368ef707-e04d-43cb-a267-417025a9fda9",
+              "id": "ab30183b-c6ed-4bec-a400-f4880f4358f7",
               "name": "User updated successfully",
               "originalRequest": {
                 "url": {
@@ -579,7 +806,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "eae7d89b-5065-4200-89b1-199b97f6348f",
+              "id": "61effc46-bcbb-4c76-9d3e-3188804ed12e",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
@@ -627,7 +854,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "8b0feaec-2d1f-4eaa-b0d8-e651a1074723",
+              "id": "a9edbc32-7817-4434-93b6-f608c83b2b17",
               "name": "User not found",
               "originalRequest": {
                 "url": {
@@ -675,7 +902,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "a10a4f36-4b60-4ba0-aa03-3b633917e8ff",
+              "id": "58b1779d-7394-48a1-86bf-8a52eddb9232",
               "name": "Email already in use",
               "originalRequest": {
                 "url": {
@@ -729,7 +956,7 @@
           }
         },
         {
-          "id": "78e5e482-1f93-40a3-9253-14d2bf002408",
+          "id": "189be114-9eba-4a7b-a414-5c49d3021dc9",
           "name": "Get user by ID",
           "request": {
             "name": "Get user by ID",
@@ -766,7 +993,7 @@
           },
           "response": [
             {
-              "id": "f2f11aa7-884f-4d73-b5bc-06ef3f4327ac",
+              "id": "78723b47-3d1d-4e54-9e59-016344be0dea",
               "name": "User retrieved successfully",
               "originalRequest": {
                 "url": {
@@ -814,7 +1041,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "f15aa29e-5710-4bcf-868a-c0d61e27a313",
+              "id": "6c93256b-951f-4152-887d-ff010996e731",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
@@ -862,7 +1089,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "e0cd0a07-7313-45f0-9607-0bba7b1c42d8",
+              "id": "7fec2969-730d-460b-b5d4-154cf49ab8ef",
               "name": "User not found",
               "originalRequest": {
                 "url": {
@@ -928,7 +1155,7 @@
     }
   ],
   "info": {
-    "_postman_id": "c60f3475-5552-40e0-89a6-27a353f7197f",
+    "_postman_id": "41da4529-3412-4163-a0ee-363b5aa6d3f7",
     "name": "Storage API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {

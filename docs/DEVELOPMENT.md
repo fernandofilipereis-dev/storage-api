@@ -424,8 +424,11 @@ hotfix/*      # Production fixes
 2. **Implement caching** (Redis)
 3. **Optimize queries** (avoid N+1)
 4. **Use connection pooling**
-5. **Implement pagination**
-6. **Monitor performance**
+### 5. Pagination, Sorting, and Filtering
+- Implement pagination with `page` and `limit` query parameters.
+- Implement sorting with `sortBy` and `sortOrder` (ASC/DESC).
+- Implement filtering with `search` (for names/emails) and specific field filters (like `isActive`).
+- Use `findAndCount` in TypeORM repositories to return total counts for pagination metadata.
 
 ## Security Checklist
 

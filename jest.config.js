@@ -11,7 +11,7 @@ module.exports = {
         '!src/server.ts',
         '!src/**/index.ts',
     ],
-    coverageDirectory: 'coverage',
+    coverageDirectory: 'tests/coverage',
     coverageReporters: ['text', 'lcov', 'html'],
     moduleNameMapper: {
         '^@domain/(.*)$': '<rootDir>/src/domain/$1',
